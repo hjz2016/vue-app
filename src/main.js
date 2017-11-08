@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// 公共样式
+import './style/common.scss'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
