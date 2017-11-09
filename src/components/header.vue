@@ -1,23 +1,23 @@
 <template>
   <div>
     <!-- 主页头部 -->
-    <div v-if='type=="index"' id="index_header">
+    <div v-if='type=="index"' id="myheader">
       <logo></logo>
       <iconList></iconList>  
       <search :keyword='keyword'></search>
     </div>
     <!-- 详情头部 -->
-    <div v-else-if='type=="detail"' id="index_header">
+    <div v-else-if='type=="detail"' id="myheader">
       <logo></logo>
       <iconList :type='type'></iconList>  
     </div>
     <!-- 搜索头部 -->
-    <div v-else-if='type=="search"' id="index_header">
+    <div v-else-if='type=="search"' id="myheader">
       <longSearch :keyword='keyword' :chgType='chgType'></longSearch>
       <searchBtn :isCancel='isCancel'></searchBtn>
     </div>
     <!-- 历史头部 -->
-    <div v-else-if='type=="lishi"' id="index_header">
+    <div v-else-if='type=="lishi"' id="myheader">
       <Back></Back>
       <myTitle></myTitle>
     </div>
@@ -44,7 +44,7 @@ export default {
       'logo':{
           template:`<div class="logo">
                       <a href="/">
-                        <img src="//img.mgtv.com/imgotv-mobile-zh_cn/static/images/logo-header.5983c87.png" alt="">
+                        <img src="https://img.mgtv.com/imgotv-mobile-zh_cn/static/images/logo-header.5983c87.png" alt="">
                       </a>
                     </div>`
       },
@@ -91,7 +91,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss'>
-    #index_header{
+    #myheader{
       position: fixed;
       left: 0;
       top: 0;

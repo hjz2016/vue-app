@@ -4,21 +4,39 @@
     <!-- <myHeader type='detail'></myHeader> -->
     <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
     <!-- <myHeader type='lishi'></myHeader>  -->
+    <myNav></myNav>
+    <fixbtn v-if='fixbtnShow'></fixbtn>
   </div>
 </template>
 
 <script>
-import index_header from '../../components/header.vue'
+import myheader from '../../components/header.vue'
+import mynav from './children/nav.vue'
+import fixbtn from '../../components/fixbtn.vue'
+
 
 export default {
   name: 'index',
   data () {
     return {
-      msg: '首页'
+      msg: '首页',
+      fixbtnShow:false
     }
   },
   components:{
-      myHeader:index_header
+      myHeader:myheader,
+      myNav:mynav,
+      fixbtn:fixbtn
+  },
+  mounted(){
+      var that = this;
+      window.addEventListener('scroll',function(e){
+          if($(this).scrollTop() > 100){
+              that.fixbtnShow = true
+          }else{
+              that.fixbtnShow = false
+          }
+      })
   }
 }
 </script>
