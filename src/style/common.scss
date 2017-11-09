@@ -3,5 +3,23 @@ html{
 
 	*{
 		font-size: .14rem;
+		margin: 0;
+		padding: 0;
 	}
 }
+
+input{
+	border: 0;
+	font-family: \5FAE\8F6F\96C5\9ED1,tahoma,sans-serif;
+	outline: none;
+}
+
+a{
+	    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+ul,li{
+	list-style: none;
+}
+
