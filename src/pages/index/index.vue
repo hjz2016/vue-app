@@ -4,7 +4,8 @@
     <!-- <myHeader type='detail'></myHeader> -->
     <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
     <!-- <myHeader type='lishi'></myHeader>  -->
-    <myNav></myNav>
+    <myNav :getNavData='getNavData'></myNav>
+    <mymain :detailData='detailData'></mymain>
     <fixbtn v-if='fixbtnShow'></fixbtn>
   </div>
 </template>
@@ -12,6 +13,7 @@
 <script>
 import myheader from '../../components/header.vue'
 import mynav from './children/nav.vue'
+import mymain from './children/main.vue'
 import fixbtn from '../../components/fixbtn.vue'
 
 
@@ -20,13 +22,20 @@ export default {
   data () {
     return {
       msg: '首页',
-      fixbtnShow:false
+      fixbtnShow:false,
+      detailData:null
     }
   },
   components:{
       myHeader:myheader,
       myNav:mynav,
+      mymain,
       fixbtn:fixbtn
+  },
+  methods:{
+      getNavData(data){
+          this.detailData = data
+      }
   },
   mounted(){
       var that = this;

@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div style="display: block;
+    position: relative;
+    height: 44px;
+    z-index: 20;">
     <!-- 主页头部 -->
     <div v-if='type=="index"' id="myheader">
       <logo></logo>
