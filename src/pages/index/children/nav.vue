@@ -26,7 +26,7 @@ export default {
       detailData:null
     }
   },
-  props:['getNavData'],
+  props:['getNavData','beginReq'],
   created(){
       var that = this;
       // 请求nav数据
@@ -64,6 +64,8 @@ export default {
       },
       getDetail(){
           var that = this;
+          // 开始
+          this.beginReq(true)
 
           // 请求详细数据
           this.$http.jsonp('https://st.bz.mgtv.com/odin/c1/channel/index',{
@@ -78,6 +80,7 @@ export default {
           }).then((res)=>{
               that.detailData = res.body.data
               that.getNavData(that.detailData)
+              this.beginReq(false)
 
               console.log(that.detailData)
           })
@@ -95,7 +98,9 @@ export default {
         width:100%;
         position:fixed;
         top:44px;
-        background:#fff;
+        background: hsla(0,0%,100%,.9);
+        z-index:22;
+
 
         .nav_wrapper{
             padding:0 10px;

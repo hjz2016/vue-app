@@ -4,8 +4,8 @@
     <!-- <myHeader type='detail'></myHeader> -->
     <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
     <!-- <myHeader type='lishi'></myHeader>  -->
-    <myNav :getNavData='getNavData'></myNav>
-    <mymain :detailData='detailData'></mymain>
+    <myNav :getNavData='getNavData' :beginReq='beginReq'></myNav>
+    <mymain :detailData='detailData' :isloading='isloading'></mymain>
     <fixbtn v-if='fixbtnShow'></fixbtn>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
     return {
       msg: '首页',
       fixbtnShow:false,
-      detailData:null
+      detailData:null,
+      isloading:null
     }
   },
   components:{
@@ -35,6 +36,10 @@ export default {
   methods:{
       getNavData(data){
           this.detailData = data
+     
+      },
+      beginReq(flag){
+          this.isloading = flag
       }
   },
   mounted(){
