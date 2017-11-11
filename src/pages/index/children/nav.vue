@@ -5,9 +5,11 @@
     line-height: 40px;">
     <div id="index_nav">
         <div class="nav_wrapper">
-            <ul>
+            <ul  >
               <li v-for='(item,i) in data'  ref='item' class=""><a @click.prevent='chgType' href="#"><span>{{item.title}}</span><i></i></a></li>
+              
             </ul>
+            
         </div>
     </div>
   </div>
@@ -108,10 +110,27 @@ export default {
             white-space: nowrap;
             overflow:hidden;
             overflow-x:auto;
+            
+
+            ul{
+                display: table;
+            }
+
+            @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {
+                li a{
+                    font-size:.14rem
+                }
+            }
+
+            @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation : portrait) {
+                li a{
+                    font-size:.15rem
+                }
+            }
 
             li{
                 display: inline-block;
-                margin: 0 5px;
+                margin: 0 3px;
 
                 &.current{
                     a{
