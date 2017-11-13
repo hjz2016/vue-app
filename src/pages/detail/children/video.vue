@@ -2,7 +2,7 @@
   <div id="video">
       <div class="video_wrapper">
           <div class="mg_video" >
-            <video @click='checkType' ref='video' id="player" src="http://pcvideoyd.titan.mgtv.com/pb/2017/10/20/1156/335CCD894A0FBDC885E246E42C3EFB98_20171020_1_1_247.mp4?arange=0&pm=nLwO_2wzCVFDTRpvzD38sQ6Y1X3Q3M53Q~6ps_jfpkNVl~SZo~YwPzmSbhnBORrUGt8z4vS5TykSsHQQuwAspsLw_2G9OTqaqxYXZXz_Q0wjMgl_4mYtMXsPZf56Cn~6Nr75KBwuREixkREUkWCjy1FNe1nKVEI4QK02oQyozqPIpekbGeRLcaIlQNxEuD8Wb8cULFrRQ8q0W~COZF8k2W~2hGT1Cx2X0A88A01G3FlJi4agK7Bod7Z0bPdpBGWuh_TzqLi97a8aYV5aVmFPF8FJcnsCVAfhe5M8v4NuT9gPAqY8ARaCH6trRIyyMq2hmnlDmimd~kUfQu2AA6H5lsyfItg_4xplwh4eAP2DXJZFgQz8MgOCmCD5Cm9GvQ7aRm0XlF5Dba_T8vFhs9YZk6tlbrY-" poster="" preload="auto" width="100%" 
+            <video @click='checkType' ref='video' id="player" src="http://pcvideoyd.titan.mgtv.com/pb/2017/10/27/1293/9C06F5111D1E713D75202104FEA490A5_20171027_1_1_241.mp4?arange=0&pm=GzKKc02Ox59qiYCUhalRLzPDreKes_CSLDsP~bpxAu6VL7Vo7Vnd7V0w24BnmkPR4Gsw4sG~C1MhPZnuiGgGgkqhq6iX7SMGNSTiTJKj6PqA3wVmooA_TMXtwv0UxuF55ukoAUJoJs41Adw6wh9mrlhq2FVLU8Gf4f4jEsHKNnEOXs8gaQgS3aR2At2LmrYdzxoAcA0OPVCV85fJNk9wEWg2xgZcwpPh~iL~FWRGLTtNQNzkLhthtPNqg9A6860~IqH1D9FOu1v95Vlm9wOwHTyfGxJz1fLObyg7JbxOwJ78TgIdhh0n8g78Ky67CXRxuFOptKCftC4VR3PmyvZanzKmifqtBtjvoacnTFYwmBJcAS5LOmY3SzXMZaM2sXigUBwfam_yeq_9WRNqWaxUBvAblJA-" poster="" preload="auto" width="100%" 
             playsinline="" x-webkit-airplay="deny" webkit-playsinline="" controls="controls" style="height: 210.938px;"></video>
           </div>
           <div class="cover_div" v-if='isShow' >

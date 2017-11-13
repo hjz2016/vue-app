@@ -4,14 +4,22 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VueAwesomeSwiper from 'vue-awesome-swiper';
+import VueLazyLoad from 'vue-lazyload'
+
 
 // 公共样式
 import './style/common.scss'
 
+// 
+import 'animate.css'
+
 Vue.config.productionTip = false
 Vue.use(VueResource)
-Vue.use(VueAwesomeSwiper)
+Vue.use(VueAwesomeSwiper);
+Vue.use(VueLazyLoad,{
+   
+})
 
 
 /* eslint-disable no-new */

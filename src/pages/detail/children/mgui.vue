@@ -7,9 +7,9 @@
     </div>
     <div class="tabs">
       <ul>
-        <li class="focus"><a href="#">第三季</a></li>
-        <li><a href="#">第二季</a></li>
-        <li><a href="#">第一季</a></li>
+        <li class="focus" @click.stop.prevent='chgTabs'><a href="#">第三季</a></li>
+        <li><a href="#" @click.stop.prevent='chgTabs'>第二季</a></li>
+        <li><a href="#" @click.stop.prevent='chgTabs'>第一季</a></li>
       </ul>
     </div>
     <div class="swiper">
@@ -71,14 +71,20 @@ export default {
   name: 'mgui',
   data () {
     return {
-      msg: '正片'
+      msg: '正片',
+      swiperOption:{
+          
+      }
     }
   },
   components:{
      
   },
   methods:{
-      
+     chgTabs(e){
+        $(e.target).parent().addClass('focus')
+        .siblings('li').removeClass('focus')
+     } 
   },
   mounted(){
       

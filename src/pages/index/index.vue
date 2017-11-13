@@ -1,12 +1,12 @@
 <template>
   <div id="index">
-    <myHeader type='index' keyword='我想和你唱'></myHeader> 
+    
     <!-- <myHeader type='detail'></myHeader> -->
     <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
     <!-- <myHeader type='lishi'></myHeader>  -->
     <myNav :getNavData='getNavData' :beginReq='beginReq'></myNav>
     <mymain :detailData='detailData' :isloading='isloading'></mymain>
-    <fixbtn v-if='fixbtnShow'></fixbtn>
+    
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 import myheader from '../../components/header.vue'
 import mynav from './children/nav.vue'
 import mymain from './children/main.vue'
-import fixbtn from '../../components/fixbtn.vue'
+
 
 
 export default {
@@ -22,7 +22,6 @@ export default {
   data () {
     return {
       msg: '首页',
-      fixbtnShow:false,
       detailData:null,
       isloading:null
     }
@@ -30,8 +29,7 @@ export default {
   components:{
       myHeader:myheader,
       myNav:mynav,
-      mymain,
-      fixbtn:fixbtn
+      mymain
   },
   methods:{
       getNavData(data){
@@ -43,14 +41,7 @@ export default {
       }
   },
   mounted(){
-      var that = this;
-      window.addEventListener('scroll',function(e){
-          if($(this).scrollTop() > 100){
-              that.fixbtnShow = true
-          }else{
-              that.fixbtnShow = false
-          }
-      })
+      
   }
 }
 </script>

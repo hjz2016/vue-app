@@ -1,8 +1,5 @@
 <template>
   <div id="detail">
-    <myHeader type='detail'></myHeader>
-    <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
-    <!-- <myHeader type='lishi'></myHeader>  -->
     <myVideo></myVideo>
     <myInfo></myInfo>  
     <mgUi></mgUi>
@@ -121,14 +118,24 @@
             </swiper-slide>
         </swiper>
     </div>
+
+    <!-- 看了还会看 -->
+    <loadMore></loadMore> 
+
+     <!-- 评论 -->
+    <comments></comments> 
+
   </div>
 </template>
 
 <script>
-import myheader from '../../components/header.vue';
+
 import myvideo from './children/video.vue';
 import myInfo from './children/info.vue';
 import mgUi from './children/mgui.vue';
+import loadMore from './children/loadMore.vue';
+import comments from './children/comments.vue';
+
 import { swiper, swiperSlide } from 'vue-awesome-swiper';
 
 
@@ -143,12 +150,13 @@ export default {
     }
   },
   components:{
-      myHeader:myheader,
       myVideo:myvideo,
       myInfo:myInfo,
       mgUi,
       swiper,  
-      swiperSlide  
+      swiperSlide,
+      loadMore,
+      comments
   },
   methods:{
       
@@ -291,9 +299,10 @@ export default {
             padding: 10px 10px 0px;
             position: relative;
             z-index: 0;
-            width: 355px;
-            height: 66.5014px;
+            width: 100%;
+            height: .7rem;
             overflow: hidden;
+            box-sizing:border-box;
 
             .tag{
                 position: absolute;

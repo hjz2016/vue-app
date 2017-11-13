@@ -5,6 +5,7 @@ import Detail from '@/pages/detail/detail.vue'
 
 Vue.use(Router)
 
+
 export default new Router({
   routes: [
     {

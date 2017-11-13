@@ -87,15 +87,15 @@ export default {
             'contItem':{
                 data(){
                     return {
-                        allCont:null
+                        allCont:null,
+                        imgsrc:"https://0img.hitv.com/preview/cms_icon/2017/11/20171109203642308.jpg_346x194_h.webp"
                     }
                 },
                 template:`<li>
                             
                               <router-link to='/detail'>
-
                                 <div class='b_top'>
-                                  <img src="https://0img.hitv.com/preview/cms_icon/2017/11/20171109203642308.jpg_346x194_h.webp" alt="" />
+                                  <img v-lazy='imgsrc' alt="" />
                                   <span class='green'>特辑</span>
                                 </div>
                                 <span class='b_title'>习近平同特朗普举行会谈</span>
@@ -120,10 +120,8 @@ export default {
   watch:{
       "detailData":{
           handler(val,oldval){
-              
+            console.log(this.isloading)
               var arr = [];
-              
-             
               var that = this;
               
               for(var i = 0 ; i < that.detailData.length ; i++){
@@ -375,7 +373,7 @@ export default {
                         height: .125rem;
                         line-height: .135rem;
                         font-size: .12rem;
-                        color: #888;
+                        color: #666;
                        
                     }
                 }
@@ -416,6 +414,8 @@ export default {
 
                 .b_sub{
                     margin-top:5px;
+                    font-size:12px;
+                    color: #888;
                 }
             }
         }

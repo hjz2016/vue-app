@@ -4,11 +4,11 @@
         <span>打开芒果视频APP,提升3倍流畅度</span>
      </div>
      <div class="hd">
-       <a href="#" class="more " @click='showMore'><i class="iconfont icon-gengduoxinxi"></i></a>
+       <a href="#" class="more " @click.prevent='showMore'><i class="iconfont icon-gengduoxinxi"></i></a>
        <span>明星大侦探 第三季<i></i></span>
      </div>
      
-     <transition-group name='fade'>
+     <transition enter-active-class='fast-ani fadeIn' leave-active-class='fast-ani fadeOut'>
         <div v-show='!showDetails' class="bd" :key='1'>
          <span class="playnum"><i class="iconfont icon-play"></i>3.8亿次播放</span>
          <div class="list">
@@ -19,6 +19,8 @@
            </ul>
          </div>
        </div>
+    </transition>
+    <transition enter-active-class='fast-ani fadeIn' leave-active-class='fast-ani fadeOut'>
         <div v-show='showDetails' class="details" :key='2'>
             <div class="d_times">3.8亿次播放</div>
             <div class="d_desc">
@@ -36,7 +38,7 @@
                <a href=""><i class="iconfont icon-gengduo" ></i>下载APP关注</a>
             </div>
         </div>
-     </transition-group> 
+     </transition> 
      
   </div>
 </template>
@@ -74,6 +76,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss' scoped>
+    
+
     .fade-enter-active, .fade-leave-active{
         transition: all 0.5s ease     
     }
