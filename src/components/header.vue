@@ -39,8 +39,14 @@ export default {
   },
   props:['type','keyword'],
   methods:{
-      chgType(){
+      chgType(e){
+          // console.log(e.target)
           this.isCancel = !this.isCancel
+          if(this.isCancel){
+            $(e.target).trigger('focus')
+          }else{
+            $(e.target).trigger('blur')
+          }
       }
   },
   components:{
@@ -53,14 +59,14 @@ export default {
       },
       'search':{
           template:`<div class='search'>
-              <input type="text" :value='keyword'/>
+              <input type="text" :value='keyword' @click='$router.push("/search")'/>
               <span><i class='iconfont icon-sousuo'></i></span>
           </div>`,
           props:['keyword']
       },
       'iconList':{
           template:`<ul class='icon_list'>
-              <li v-if='typeIs'><a href="/search" ><i class='iconfont icon-sousuo'></i></a></li>
+              <li v-if='typeIs'><router-link to="/search" ><i class='iconfont icon-sousuo'></i></router-link></li>
               <li><a href="/lishi"><i class='iconfont icon-history-copy'></i></a></li>
               <li><a href="/wode"><i class='iconfont icon-wode1-copy'></i></a></li>
           </ul>`,
@@ -74,7 +80,7 @@ export default {
       'longSearch':{
           template:`<div class="longSearch">
             <div class="searchicon"></div>
-            <form action="javascript:;"><input @blur='chgType' @click='chgType' type="text" :placeholder='keyword'/></form>
+            <form action="javascript:;" @click='chgType'><input  @blur='chgType'  type="text" :placeholder='keyword'/></form>
           </div>`,
           props:['keyword','chgType']
       },

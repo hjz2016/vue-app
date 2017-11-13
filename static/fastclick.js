@@ -225,6 +225,10 @@
 	 * @returns {boolean} Returns true if the element needs a native click
 	 */
 	FastClick.prototype.needsClick = function(target) {
+		// if($(target).parents('.needsClick').length){
+		// 	return true;
+		// }
+
 		switch (target.nodeName.toLowerCase()) {
 
 		// Don't send a synthetic click to disabled inputs (issue #62)

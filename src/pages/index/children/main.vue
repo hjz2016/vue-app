@@ -120,7 +120,7 @@ export default {
   watch:{
       "detailData":{
           handler(val,oldval){
-            console.log(this.isloading)
+            // console.log(this.isloading)
               var arr = [];
               var that = this;
               
