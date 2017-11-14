@@ -1,21 +1,21 @@
 # myapp
 
-> A Vue.js project
+> 芒果TV vue全家桶+webpack3+element-ui
 
 ## Build Setup
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 开启开发服务器
 npm run dev
 
-# build for production with minification
+# 构建生产版本
 npm run build
 
-# build for production and view the bundle analyzer report
+# 构建生产版本并查看打包报告
 npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+芒果TV：实现了一部分功能
