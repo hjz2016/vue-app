@@ -24,6 +24,7 @@ export default {
   #footer{
     padding: 13px 0;
     background:#f5f5f5;
+    
 
     .mg-footer-copyright{
 

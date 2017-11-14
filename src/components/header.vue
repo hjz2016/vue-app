@@ -15,7 +15,7 @@
       <iconList :type='type'></iconList>  
     </div>
     <!-- 搜索头部 -->
-    <div v-else-if='type=="search"' id="myheader">
+    <div v-else-if='type=="search"||"list"' id="myheader">
       <longSearch :keyword='keyword' :chgType='chgType'></longSearch>
       <searchBtn :isCancel='isCancel'></searchBtn>
     </div>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
+
 export default {
   name: 'index',
   data () {
@@ -80,9 +82,22 @@ export default {
       'longSearch':{
           template:`<div class="longSearch">
             <div class="searchicon"></div>
-            <form action="javascript:;" @click='chgType'><input  @blur='chgType'  type="text" :placeholder='keyword'/></form>
+            <form action="javascript:;" @click='chgType' @keyup.enter='beforeGoList()'><input ref='ipt' @blur='chgType'  type="text" :placeholder='key?key:keyword'/></form>
           </div>`,
-          props:['keyword','chgType']
+          props:['keyword','chgType'],
+          data(){
+            return {
+              key:localStorage["keyword"]
+            }
+          },
+          methods:{
+              beforeGoList(){
+                var that = this;
+                var obj = {$router:that.$router,$route:that.$route,keyword:that.$refs.ipt.value}
+                that.goList(obj)
+              },
+              ...mapMutations(['goList'])
+          }
       },
       'searchBtn':{
           template:'<div class="searchBtn">{{isCancel?"取消":"搜全网"}}</div>',
