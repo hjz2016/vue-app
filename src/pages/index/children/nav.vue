@@ -4,19 +4,28 @@
     height: 40px;
     line-height: 40px;">
     <div id="index_nav">
-        <div class="nav_wrapper">
-            <ul  >
-              <li v-for='(item,i) in data'  ref='item' class=""><a @click.prevent='chgType' href="#"><span>{{item.title}}</span><i></i></a></li>
+      
+        <swiper :options="swiperOption" ref="mySwiper" class="nav_wrapper">
+            <!-- <ul  > -->
+              <swiper-slide v-for='(item,i) in data' :key='i'  ref='item' class="">
+                <a @click.prevent='chgType' href="#">
+                  <span>{{item.title}}</span>
+                  <i></i>
+                </a>
+              </swiper-slide>
               
-            </ul>
-            
-        </div>
+            <!-- </ul> -->
+        
+        </swiper>
+      
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import { swiper, swiperSlide } from 'vue-awesome-swiper';
+
 
 export default {
   name: 'nav',
@@ -25,9 +34,16 @@ export default {
       msg: 'nav',
       data: null,
       curvclassId:143,
-      detailData:null
+      detailData:null,
+      swiperOption:{
+          slidesPerView:'auto',
+          slideToClickedSlide:true
+      }
     }
   },
+  components:{swiper,  
+            swiperSlide  },
+
   props:['getNavData','beginReq'],
   created(){
       var that = this;
@@ -45,10 +61,14 @@ export default {
   },
   updated(){
       var that = this;
-      this.$refs.item[0].className = 'current';
+      console.log(this.$refs.item[0].$el)
+      this.$refs.item[0].$el.className += ' current';
       this.$refs.item.forEach((item,i)=>{
-          $(item).data('vclassId',that.data[i].vclassId)
+          $(item.$el).data('vclassId',that.data[i].vclassId)
       })
+
+      
+
   },
   mounted(){
       this.getDetail()
@@ -56,13 +76,22 @@ export default {
   methods:{
       chgType(e){
           var that = this;
+          console.log($(e.target).parents('.swiper-slide'))
+          $(e.target).parents('.swiper-slide').addClass('current')
+          .siblings('div').removeClass('current')
 
-          $(e.target).parents('li').addClass('current')
-          .siblings('li').removeClass('current')
-
-          this.curvclassId = $(e.target).parents('li').data('vclassId')
+          this.curvclassId = $(e.target).parents('.swiper-slide').data('vclassId')
 
           this.getDetail()
+
+          // this.$refs.item.forEach((item)=>{
+          //   if(item.className=='current'){
+          //     // console.log($(item).offset().left)
+
+          //     $('.nav_wrapper').scrollLeft($(item).offset().left - $('.nav_wrapper').offset().left+$('.nav_wrapper').scrollLeft()
+          //     )
+          //   }
+          // })
       },
       getDetail(){
           var that = this;
@@ -110,10 +139,11 @@ export default {
             white-space: nowrap;
             overflow:hidden;
             overflow-x:auto;
+            transition: all .5s;
             
 
-            ul{
-                display: table;
+            .swiper-wrapper{
+                /*display: table;*/
             }
 
             @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation : portrait) {
@@ -128,13 +158,16 @@ export default {
                 }
             }
 
-            li{
-                display: inline-block;
+            .swiper-slide{
+                /*display: inline-block;*/
                 margin: 0 3px;
+                text-align: center;
+                width: auto;
 
                 &.current{
                     a{
                           color: #ff5f00;
+                          text-align: center;
                     }
 
                     i{

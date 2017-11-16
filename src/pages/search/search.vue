@@ -1,5 +1,16 @@
 <template>
   <div id="search">
+    <div class="search_history" v-if='history.length!=0'>
+      <div class="til">
+        搜索历史
+        <i class="el-icon-delete" v-delete:click='del'></i>
+      </div>
+      <div class="list">
+        <ul>
+          <li v-for='n in history'><a @click='beforeGoList(n)'>{{n}}</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="tt">
       热门推荐
     </div>   
@@ -23,7 +34,7 @@
     </div>
     <div class="hot">
       <div class="til">全网热门搜索</div>
-      <div class="list">
+      <div class="list" v-demo:click.abc='chgTabs'>
         <ul>
           <li v-for='(item,i) in recommendlist'>
             <span :style="'background:'+colors[i]">{{i+1}}</span>
@@ -35,9 +46,11 @@
   </div>
 </template>
 
-<script>
 
-import {mapState} from 'vuex'
+<script>
+const IScroll = require("../../../static/iscroll-probe") ;
+// console.log(IScroll)
+import {mapState,mapMutations} from 'vuex'
 
 export default {
   name: 'search',
@@ -54,15 +67,25 @@ export default {
     curIndex(){
       return this.listdata.length!=0?this.listdata[this.curType - 1]:0
     }
-    // ,
-    // ...mapState({
-    //   'vnum':(state)=>{
-    //    return state.num*2
-    //   }
-    // })
+    ,
+    ...mapState(['history'])
   },
   components:{
       
+  },
+  directives:{
+    'demo':{
+        bind(el,binding,vnode){
+          console.log(el,binding,vnode)
+        }
+    },
+    'delete':{
+        bind(el,binding){
+          el['on'+binding.arg] = ()=>{
+              binding.value()
+          }
+        }
+    }
   },
   methods:{
       chgTabs(e){
@@ -71,7 +94,14 @@ export default {
 
           this.curType = $(e.target).data('value')
           // this.$store.commit('addNum',2)
-      }
+      },
+      beforeGoList(val){
+        var that = this;
+        
+        var obj = {$router:that.$router,$route:that.$route,keyword:val}
+        that.goList(obj)
+      },
+      ...mapMutations(['goList','del'])
   },
   mounted(){
     // console.log(this.curIndex)
@@ -94,14 +124,41 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='scss'>
    #search{
+    background: #fff;
+      .search_history{
 
-      .hot{
-          clear: both;
-          min-height: 3.13rem;
-          width: 100%;
-          background-color: #fff;
+        i{
+          float:right;
+          margin-top: .15rem;
+          margin-right: .1rem;
+        }
 
-          .til{
+        .list{
+          /*padding: 0 0 0 .1rem;*/
+          overflow: hidden;
+
+          li{
+            display: block;
+            float: left;
+            width: 50%;
+          }
+
+          a{
+            height: .4rem;
+            border-radius: .03rem;
+            line-height: .4rem;
+            font-size: .14rem;
+            text-align: center;
+            display: block;
+            margin:.1rem;
+            background-color: #eff1f3;
+            color: #666;
+            overflow: hidden;
+          }
+        }
+      }
+
+      .til{
                 position: relative;
               padding: .05rem 0 .05rem .1rem;
               height: .25rem;
@@ -109,6 +166,14 @@ export default {
               font-size: .14rem;
               color: #999;
           }
+
+      .hot{
+          clear: both;
+          min-height: 3.13rem;
+          width: 100%;
+          background-color: #fff;
+
+          
 
           .list{
             padding-left: .1rem;

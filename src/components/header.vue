@@ -4,7 +4,7 @@
     height: 44px;
     z-index: 20;">
     <!-- 主页头部 -->
-    <div v-if='type=="index"' id="myheader">
+    <div v-if='type=="index"||"wode"' id="myheader">
       <logo></logo>
       <iconList></iconList>  
       <search :keyword='keyword'></search>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {mapMutations} from 'vuex'
+import {mapState,mapMutations,mapGetters} from 'vuex'
 
 export default {
   name: 'index',
@@ -70,30 +70,48 @@ export default {
           template:`<ul class='icon_list'>
               <li v-if='typeIs'><router-link to="/search" ><i class='iconfont icon-sousuo'></i></router-link></li>
               <li><a href="/lishi"><i class='iconfont icon-history-copy'></i></a></li>
-              <li><a href="/wode"><i class='iconfont icon-wode1-copy'></i></a></li>
+              
+              <li>
+                <router-link :to="hasLogin?'/wode':'/login'">
+                  <i v-if='!hasLogin' class='iconfont icon-wode1-copy'></i>
+                  <img v-else-if='hasLogin' style='    margin-top: 10px;width: .23rem;border-radius: 50%;' :src="hasLogin.imgsrc" alt="" />
+                </router-link>
+              </li>
           </ul>`,
           props:['type'],
           computed:{
               typeIs(){
                   return this.type=='detail'
-              }
+              },
+
+              ...mapGetters(['hasLogin'])
+          },
+          mounted(){
+            // console.dir(JSON.stringify(this.hasLogin))
           }
       },
       'longSearch':{
           template:`<div class="longSearch">
             <div class="searchicon"></div>
-            <form action="javascript:;" @click='chgType' @keyup.enter='beforeGoList()'><input ref='ipt' @blur='chgType'  type="text" :placeholder='key?key:keyword'/></form>
+            <form action="javascript:;" @click='chgType' @keyup.enter='beforeGoList'><input ref='ipt' @blur='chgType'  type="text" :value='curKey?curKey:keyword'/></form>
           </div>`,
           props:['keyword','chgType'],
           data(){
             return {
-              key:localStorage["keyword"]
+              
             }
+          },
+          computed:{
+            key(){
+              return localStorage["keyword"]
+            },
+            ...mapState(['curKey'])
           },
           methods:{
               beforeGoList(){
                 var that = this;
-                var obj = {$router:that.$router,$route:that.$route,keyword:that.$refs.ipt.value}
+                console.log(1)
+                var obj = {$router:that.$router,$route:that.$route,keyword:that.$refs.ipt.value||that.key}
                 that.goList(obj)
               },
               ...mapMutations(['goList'])

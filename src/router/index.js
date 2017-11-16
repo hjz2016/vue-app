@@ -4,6 +4,8 @@ import Index from '@/pages/index/index.vue'
 import Detail from '@/pages/detail/detail.vue'
 import Search from '@/pages/search/search.vue'
 import List from '@/pages/list/list.vue'
+import Login from '@/pages/login/login.vue'
+import Wode from '@/pages/wode/wode.vue'
 
 Vue.use(Router)
 
@@ -29,6 +31,16 @@ export default new Router({
       path: '/list',
       name: 'list',
       component: List
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/wode',
+      name: 'wode',
+      component: Wode
     }
   ]
 })

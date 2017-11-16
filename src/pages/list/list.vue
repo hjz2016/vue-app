@@ -3,7 +3,7 @@
 	  <div v-show='!beginReq' class="list-box">
 	  	<swiper :options="swiperOption" ref="mySwiper">
 	 	   <swiper-slide v-for='(n,i) in listData' :key='i' v-if='i<num'>
-	 	   		<a href="/detail">
+	 	   		<router-link to="/detail">
 	 	   			<div class="pic">
 	 	   				<img :src="n.data[0].img" alt="">
 	 	   				<div class="time">{{n.data[0].rightBottomCorner}}</div>
@@ -15,7 +15,7 @@
 	 	   					<p>{{n.data[0].desc[0]}}</p>
 	 	   				</div>
 	 	   			</div>
-	 	   		</a>
+	 	   		</router-link>
 		 	   <div class="roller"></div>
 	 	   		
 	 	   </swiper-slide>

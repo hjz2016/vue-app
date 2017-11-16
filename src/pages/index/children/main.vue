@@ -41,7 +41,7 @@ export default {
           template:`<div class="mybanner">
             
             <swiper :options="swiperOption" ref="mySwiper">
-                <swiper-slide :key='j+"banner"' v-for='(banner,j) in detailData[0].moduleData'><a href="/" >
+                <swiper-slide  :key='j+"banner"' v-for='(banner,j) in detailData[0].moduleData'><a href="/" >
                   <div class='div_img'><img :src='banner.phoneImgUrl?banner.phoneImgUrl:"https://2img.hitv.com/preview/cms_icon/2017/11/20171108203245542.jpg_750x350_h.webp"' alt="" /></div>
                   <div class='title'>
                     <p>{{banner.name}}</p>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  	<myHeader :type='type' keyword="我想和你唱"></myHeader>
+  	<myHeader v-if='isLogin!="login"' :type='type' keyword="我想和你唱"></myHeader>
   	<!-- <myHeader type='index' keyword="我想和你唱"></myHeader> -->
   	<!-- <myHeader type='detail'></myHeader> -->
     <!-- <myHeader type='search' keyword='我想和你唱'></myHeader>  -->
@@ -10,8 +10,12 @@
     <transition enter-active-class='fast-ani fadeIn' leave-active-class='fast-ani fadeOut'>
       <app_download v-if='type=="detail"&&downloadShow'></app_download> 
     </transition>  
-    <router-view/>
-    <myFooter></myFooter>
+    <keep-alive>
+      <transition enter-active-class='fast-ani fadeIn' leave-active-class='fast-ani fadeOut'> 
+        <router-view/>
+      </transition>
+    </keep-alive>  
+    <myFooter v-if='isLogin!="login"'></myFooter>
   </div>
 </template>
 
@@ -38,6 +42,10 @@ export default {
   },
   computed:{
     type(){
+        return this.$route.name
+    },
+    isLogin(){
+        // 表示在登录页
         return this.$route.name
     }
   },
